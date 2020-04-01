@@ -3,7 +3,7 @@
 library(tidyverse);library(janitor)
 setwd('specdata')
 #load data from all ids into 1 df
-pollutant_files <-  suppressWarnings(map_df(list.files('specdata',pattern = '*.csv') %>% 
+pollutant_files <-  suppressWarnings(map_df(list.files(pattern = '*.csv') %>% 
                                      lapply(read.csv),data.frame) %>% 
   clean_names())
 
