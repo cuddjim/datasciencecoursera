@@ -6,14 +6,8 @@ setwd('specdata')
 pollutant_files <-  suppressWarnings(map_df(list.files('specdata',pattern = '*.csv') %>% 
                                      lapply(read.csv),data.frame) %>% 
   clean_names())
-#function gives mean of selected station ids for nitrate or sulfate
-pollutant_mean <- function(ids, pollutant, df = pollutant_files,removeNA = TRUE) {
-  
-  mean((df %>% filter(id %in% ids))[[pollutant]], na.rm = removeNA)
-  
-}
 
-
+#function gives complete cases per ids supplied
 complete <- function(ids, df = pollutant_files) {
 
     complete <- df %>% 
@@ -21,5 +15,6 @@ complete <- function(ids, df = pollutant_files) {
       group_by(id) %>% summarise(nobs = sum(nobs)) %>% 
       filter(id %in% ids)
 as.data.frame(complete[match(ids, complete$id),])
+
 }
 
