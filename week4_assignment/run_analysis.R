@@ -44,4 +44,5 @@ names(all_mean_std) <- gather_chg$a
 
 # step 5
 averages <- all_mean_std %>% group_by(subject, activity) %>% summarise_all(list(~mean(.,na.rm = T)))
-writexl::write_xlsx(averages, 'C:/Users/jimmy/OneDrive/Documents/repos/datasciencecoursera/week4_assignment/final_data.xlsx')
+write.table(averages, 'C:/Users/jimmy/OneDrive/Documents/repos/datasciencecoursera/week4_assignment/final_data.txt', row.names = F)
+
